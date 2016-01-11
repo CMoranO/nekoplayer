@@ -15,7 +15,7 @@ def main(id):
     url = BASE_URL.format(id) 
     res = requests.get(url)
     url = res.content
-    cmd = ["megadl", "'{}'".format(url), "--path","-","|", "mpv", "-"]
+    cmd = ["megadl", "{}".format(url), "--path","-","|", "mpv", "-"]
     subprocess.check_output(" ".join(cmd), shell=True)
 
 if __name__ == "__main__":
