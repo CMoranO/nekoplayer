@@ -16,7 +16,6 @@ def main(id):
     res = requests.get(url)
     url = res.content
     cmd = ["megadl", "'{}'".format(url), "--path","-","|", "mpv", "-"]
-    print " ".join(cmd)
     subprocess.check_output(" ".join(cmd), shell=True)
 
 if __name__ == "__main__":
