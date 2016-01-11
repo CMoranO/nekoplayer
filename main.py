@@ -3,7 +3,7 @@ import subprocess
 import requests
 import sys
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('__file__')))
 
 if os.environ.get("DEBUG"):
     BASE_URL ="http://localhost:8001/ctrl/s/play/{}"
