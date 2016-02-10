@@ -5,7 +5,7 @@ SET VER1=1.9.97
 SET VER=1.9.97
 rm -rf dist
 
-pyinstaller -i cat.icns -F  main.py
+pyinstaller -i cat.ico -F  main.py
 
 wget -c  https://mpv.srsfckn.biz/mpv-%MPVARCH%-%DATE%.7z -O mpv.7z
 7z x mpv.7z  -odist/mpv/ -y

@@ -6,7 +6,7 @@ VER1='1.9.97'
 VER='1.9.97'
 rm -rf dist
 #python setup.py py2exe
-pyinstaller -F  main.py
+pyinstaller -i cat.ico -F  main.py
 
 wget -c  https://mpv.srsfckn.biz/mpv-$MPVARCH-$DATE.7z -O mpv.7z
 7z x mpv.7z  -odist/mpv/ -y
