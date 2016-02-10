@@ -23,7 +23,7 @@ DefaultDirName={pf}\{#MyAppName}
 DisableDirPage=yes
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
-OutputDir=C:\Users\IEUser\nekoplayer
+OutputDir=C:\cygwin64\home\andres\nekoplayer
 OutputBaseFilename=install_nekoanime
 Compression=lzma
 SolidCompression=yes
@@ -40,16 +40,16 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 
 [Files]
 ; Add the ISSkin DLL used for skinning Inno Setup installations.
-Source: "C:\Program Files\Codejock Software\ISSkin\ISSkinU.dll"; DestDir: {tmp}; Flags: dontcopy
+Source: "C:\Program Files (x86)\Codejock Software\ISSkin\ISSkinU.dll"; DestDir: {tmp}; Flags: dontcopy
 
 ; Add the Visual Style resource containing the resources used for skinning,
 ; you can also use Microsoft Visual Styles (*.msstyles) resources.
-Source: "C:\Program Files\Inno Script Studio\Styles\Sakura.cjstyles"; DestDir: {tmp}; Flags: dontcopy
+Source: "C:\Program Files (x86)\Inno Script Studio\Styles\Sakura.cjstyles"; DestDir: {tmp}; Flags: dontcopy
 
-Source: "C:\Users\IEUser\nekoplayer\dist\main.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\IEUser\nekoplayer\dist\mega\*"; DestDir: "{app}\mega"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\IEUser\nekoplayer\dist\mpv\*"; DestDir: "{app}\mpv"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\IEUser\nekoplayer\dist\w9xpopen.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\cygwin64\home\andres\nekoplayer\dist\main.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\cygwin64\home\andres\nekoplayer\dist\mega\*"; DestDir: "{app}\mega"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\cygwin64\home\andres\nekoplayer\dist\mpv\*"; DestDir: "{app}\mpv"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\cygwin64\home\andres\nekoplayer\dist\w9xpopen.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

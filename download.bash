@@ -3,7 +3,7 @@ DATE='20160118'
 VER1='1-9.96'
 VER='1.9.96'
 
-python setup.py py2exe
+#python setup.py py2exe
 
 wget -c  https://mpv.srsfckn.biz/mpv-$ARCH-$DATE.7z -O mpv.7z
 7z x mpv.7z  -odist/mpv/ -y
