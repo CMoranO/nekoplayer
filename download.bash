@@ -15,3 +15,5 @@ wget -c https://megatools.megous.com/builds/megatools-$VER1-$MEGAARCH.zip -O meg
 7z x mega.zip -odist/mega/ -y
 mv -f dist/mega/megatools-$VER-$MEGAARCH/* dist/mega/
 rm dist/mega/megatools-$VER-$MEGAARCH/ -rf
+
+chmod +x -R dist
