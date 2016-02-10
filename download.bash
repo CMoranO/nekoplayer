@@ -1,15 +1,17 @@
-ARCH='i686'
+set -e
+MPVARCH='i686'
+MEGAARCH='win32'
 DATE='20160118'
-VER1='1-9.96'
-VER='1.9.96'
-
+VER1='1.9.97'
+VER='1.9.97'
+rm -rf dist
 python setup.py py2exe
 
-wget -c  https://mpv.srsfckn.biz/mpv-$ARCH-$DATE.7z -O mpv.7z
+wget -c  https://mpv.srsfckn.biz/mpv-$MPVARCH-$DATE.7z -O mpv.7z
 7z x mpv.7z  -odist/mpv/ -y
 rm dist/mpv/*.pdf
 
-wget -c https://megatools.megous.com/builds/megatools-$VER1-win32.zip -O mega.zip
+wget -c https://megatools.megous.com/builds/megatools-$VER1-$MEGAARCH.zip -O mega.zip
 7z x mega.zip -odist/mega/ -y
-mv -f dist/mega/megatools-$VER-win32/* dist/mega/
-rm dist/mega/megatools-$VER-win32/ -rf
+mv -f dist/mega/megatools-$VER-$MEGAARCH/* dist/mega/
+rm dist/mega/megatools-$VER-$MEGAARCH/ -rf

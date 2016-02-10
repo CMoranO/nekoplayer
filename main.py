@@ -3,7 +3,7 @@ import subprocess
 import requests
 import sys
 
-VER=str(1)
+VER=1
 
 BASE_DIR = os.path.dirname(sys.argv[0])
 
@@ -26,8 +26,8 @@ def main(neko_id):
     url = BASE_URL.format(id)
     res = requests.get(url)
     mega_url = res.json().get("url")
-    version = res.json().get("version")
-    if VER == version:
+    version = res.json().get("version", -1)
+    if VER != version:
         print cat
         print "Hay una version nueva!!! descargala"
         raw_input("adios ...")
@@ -38,8 +38,7 @@ def main(neko_id):
            "--path","-","|",
            '"{}"'.format(mpv_path), "-" , '--quiet'
            ]
-    #print " ".join(cmd)+
-    print cat
+    print " ".join(cmd)
     subprocess.check_output(" ".join(cmd), shell=True)
 
 
