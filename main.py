@@ -30,6 +30,7 @@ def main(neko_id):
     if VER == version:
         print cat
         print "Hay una version nueva!!! descargala"
+        raw_input("adios ...")
         return 
     mega_path = os.path.join(BASE_DIR, 'mega', 'megadl.exe')
     mpv_path = os.path.join(BASE_DIR, "mpv","mpv.com")
