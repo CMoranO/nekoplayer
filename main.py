@@ -23,10 +23,10 @@ cat ="""
 
 def main(neko_id):
     _, id = neko_id.split(":")
-    print id
+    
     url = BASE_URL.format(id)
     res = requests.get(url)
-    print res
+    
     mega_url = res.json().get("url","")
     version = res.json().get("version", -1)
     if VER != version:
@@ -34,13 +34,13 @@ def main(neko_id):
         print "Hay una version nueva!!! descargala"
         raw_input("adios ...")
         return
-    print mega_url
+    
     mega_path = os.path.join(BASE_DIR, 'mega', 'megadl.exe')
     mpv_path = os.path.join(BASE_DIR, "mpv","mpv.com")
     cmd = ['"{}"'.format(mega_path), '"{}"'.format(mega_url),
            "--path","-","|",
            '"{}"'.format(mpv_path), "-"            ]
-    print " ".join(cmd)
+    
     subprocess.check_output(" ".join(cmd), shell=True)
 
 
