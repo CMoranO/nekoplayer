@@ -49,7 +49,7 @@ Source: "C:\Program Files (x86)\Inno Script Studio\Styles\Sakura.cjstyles"; Dest
 Source: "C:\cygwin64\home\andres\nekoplayer\dist\main.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\cygwin64\home\andres\nekoplayer\dist\mega\*"; DestDir: "{app}\mega"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\cygwin64\home\andres\nekoplayer\dist\mpv\*"; DestDir: "{app}\mpv"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\cygwin64\home\andres\nekoplayer\dist\w9xpopen.exe"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "C:\cygwin64\home\andres\nekoplayer\dist\w9xpopen.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 ;#define ITDRoot ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','InstallPath','')
