@@ -10,7 +10,14 @@ if os.environ.get("DEBUG"):
 else:
     BASE_URL ="http://nekoanimedd.com/ctrl/s/play/{}"
 
-
+cat = """
+		  \    /\
+		   )  ( ')
+		  (  /  )           Nekoanime Player
+		   \(__)|
+"""
+	
+	
 def main(neko_id):
     _, id = neko_id.split(":")
     url = BASE_URL.format(id)
