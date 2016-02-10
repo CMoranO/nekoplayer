@@ -13,7 +13,7 @@ else:
 cat = """
 		  \    /\
 		   )  ( ')
-		  (  /  )           Nekoanime Player
+		  (  /  )           Nekoanimedd Player
 		   \(__)|
 """
 	
@@ -23,8 +23,9 @@ def main(neko_id):
     url = BASE_URL.format(id)
     res = requests.get(url)
     url = res.content
-    cmd = ['"{}\mega\megadl.exe"'.format(BASE_DIR), '"{}"'.format(url), "--path","-","|", '"{}\mpv\mpv.com"'.format(BASE_DIR), "-"]
-    print " ".join(cmd)
+    cmd = ['"{}\mega\megadl.exe"'.format(BASE_DIR), '"{}"'.format(url), "--path","-","|", '"{}\mpv\mpv.com"'.format(BASE_DIR), "-" , ""]
+    #print " ".join(cmd)+
+	print cat
     subprocess.check_output(" ".join(cmd), shell=True)
 
 if __name__ == "__main__":
