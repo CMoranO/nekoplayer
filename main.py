@@ -2,7 +2,8 @@ import os
 import subprocess
 import requests
 import sys
-
+import webbrowser
+#from guessit import guessit
 VER=1
 
 BASE_DIR = os.path.dirname(sys.argv[0])
@@ -16,41 +17,40 @@ cat ="""
      \    /\\
       )  ( ')
       (  /  )    NekoplayerDD (beta) v%s
-       \(__)|  
+       \(__)|    http://www.nekoanimedd.com
 """ % VER
-	
-	
+
+
 
 def main(neko_id):
     _, id = neko_id.split(":")
-##    print id
+
     url = BASE_URL.format(id)
     res = requests.get(url)
-##    print res
+
     mega_url = res.json().get("url","")
     version = res.json().get("version", -1)
+
     if VER != version:
         print cat
         print "Hay una version nueva!!! descargala"
         raw_input("adios ...")
         return
-##    print mega_url
+
+    print cat
+
+
     mega_path = os.path.join(BASE_DIR, 'mega', 'megadl.exe')
     mpv_path = os.path.join(BASE_DIR, "mpv","mpv.com")
     cmd = ['"{}"'.format(mega_path), '"{}"'.format(mega_url),
            "--path","-","|",
-           '"{}"'.format(mpv_path), "-"            ]
-##    print " ".join(cmd)
-    print cat
+           '"{}"'.format(mpv_path), "-" , '--fullscreen']
+    print "Cargando...."
+    webbrowser.open("http://bc.vc/QODvAp")
     subprocess.check_output(" ".join(cmd), shell=True)
-
 
 def start():
     main(sys.argv[1])
 
 if __name__ == "__main__":
     start()
-
-
-
-
