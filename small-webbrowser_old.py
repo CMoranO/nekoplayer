@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from PySide.QtCore import QObject, Slot, QThread
+from PySide.QtCore import QObject, Slot, QThread, QProcess
 from PySide.QtCore import QCoreApplication
 from PySide.QtGui import QApplication
 from PySide.QtWebKit import QWebView
@@ -39,9 +39,9 @@ html = """
 </html>
 """ % ( sys.argv[1], sys.argv[1])
 
+pid=None
 
-
-def neko(neko_id):
+def neko(neko_id='neko:v2Yr'):
     _, id = neko_id.split(":")
 
     url = BASE_URL.format(id)
@@ -61,13 +61,21 @@ def neko(neko_id):
 
     mega_path = os.path.join(BASE_DIR, 'mega', 'megadl.exe')
     mpv_path = os.path.join(BASE_DIR, "mpv","mpv.com")
-    cmd = ['"{}"'.format(mega_path), '"{}"'.format(mega_url),
-           "--path","-","|",
-           '"{}"'.format(mpv_path), "-" , '--no-terminal']
+    p1 = QProcess()
+    p2 = QProcess()
+    p1.setStandardOutputProcess(p2)
+    p1.start('{}'.format(mega_path), ['{}'.format(mega_url),"--path","-"])
+    p2.start('{}'.format(mpv_path), ["-" , '--no-terminal'])
+    p2.waitForFinished()
+    print p2.readAll()
+#           "--path","-",)
+    #cmd = ['"{}"'.format(mega_path), '"{}"'.format(mega_url),
+#           "--path","-","|",
+#           '"{}"'.format(mpv_path), "-" , '--no-terminal']
            #'--fullscreen']
     print "Cargando...."
     #webbrowser.open("http://bc.vc/QODvAp")
-    subprocess.check_output(" ".join(cmd), shell=True)
+    #pid = subprocess.call(" ".join(cmd), shell=True)
 
 class ConsolePrinter(QObject):
     def __init__(self, parent=None):
@@ -77,18 +85,15 @@ class ConsolePrinter(QObject):
     def text(self, message):
         print ">",message
         neko(message)
-        #neko_thread = OpenThread(neko_id=message)
-        #neko_thread.start()
+
         #print message
 
 class OpenThread(QThread):
-    def __init__(self, parent = None, neko_id = None):
-        self.neko_id = neko_id
+    def __init__(self, parent = None):
         QThread.__init__(self, parent)
 
     def run(self):
-        print self.neko_id
-        neko(self.neko_id)
+        neko()
 
 
 
