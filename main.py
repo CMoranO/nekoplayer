@@ -46,7 +46,7 @@ def main(neko_id):
            "--path","-","|",
            '"{}"'.format(mpv_path), "-" , '--fullscreen']
     print "Cargando...."
-    webbrowser.open("http://bc.vc/QODvAp")
+    #webbrowser.open("http://bc.vc/QODvAp")
     subprocess.check_output(" ".join(cmd), shell=True)
 
 def start():
