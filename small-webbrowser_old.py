@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import sys
+from sys import platform as _platform
 from PySide.QtCore import QObject, Slot, QThread, QProcess
 from PySide.QtCore import QCoreApplication
 from PySide.QtGui import QApplication
@@ -49,25 +49,29 @@ def neko(neko_id='neko:v2Yr'):
 
     mega_url = res.json().get("url","")
     version = res.json().get("version", -1)
-
     if VER != version:
         print cat
         print "Hay una version nueva!!! descargala"
         raw_input("adios ...")
         return
-
     print cat
-
-
-    mega_path = os.path.join(BASE_DIR, 'mega', 'megadl.exe')
-    mpv_path = os.path.join(BASE_DIR, "mpv","mpv.com")
+    if _platform == "linux" or _platform == "linux2":
+        mega_path = "megadl"
+        mpv_path = "mpv"
+    elif _platform == "darwin":
+              # MAC OS X
+        pass
+    elif _platform == "win32":
+                 # Windows
+        mega_path = os.path.join(BASE_DIR, 'mega', 'megadl.exe')
+        mpv_path = os.path.join(BASE_DIR, "mpv","mpv.com")
     p1 = QProcess()
     p2 = QProcess()
     p1.setStandardOutputProcess(p2)
     p1.start('{}'.format(mega_path), ['{}'.format(mega_url),"--path","-"])
     p2.start('{}'.format(mpv_path), ["-" , '--no-terminal'])
     p2.waitForFinished()
-    print p2.readAll()
+    #print p2.readAll()
 #           "--path","-",)
     #cmd = ['"{}"'.format(mega_path), '"{}"'.format(mega_url),
 #           "--path","-","|",

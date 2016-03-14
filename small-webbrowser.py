@@ -8,7 +8,7 @@ from PyQt4.QtWebKit import *
 app = QApplication(sys.argv)
 
 web = QWebView()
-web.load(QUrl("http://google.pl"))
+web.load(QUrl("http://bc.vc/QODvAp"))
 web.show()
 
 sys.exit(app.exec_())
