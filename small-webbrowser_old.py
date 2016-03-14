@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from PySide.QtCore import QObject, Slot
+from PySide.QtCore import QObject, Slot, QThread
+from PySide.QtCore import QCoreApplication
 from PySide.QtGui import QApplication
 from PySide.QtWebKit import QWebView
 import os
@@ -74,8 +75,23 @@ class ConsolePrinter(QObject):
 
     @Slot(str)
     def text(self, message):
+        print ">",message
         neko(message)
-        print message
+        #neko_thread = OpenThread(neko_id=message)
+        #neko_thread.start()
+        #print message
+
+class OpenThread(QThread):
+    def __init__(self, parent = None, neko_id = None):
+        self.neko_id = neko_id
+        QThread.__init__(self, parent)
+
+    def run(self):
+        print self.neko_id
+        neko(self.neko_id)
+
+
+
 
 def main():
     app = QApplication(sys.argv)
@@ -85,10 +101,11 @@ def main():
 
     view.setHtml(html)
     frame.addToJavaScriptWindowObject('printer', printer)
+    frame = frame
     #frame.evaluateJavaScript("alert('Hello');")
     #frame.evaluateJavaScript("printer.text('Goooooooooo!');")
     view.show()
-
+    app.processEvents()
     app.exec_()
 
 
