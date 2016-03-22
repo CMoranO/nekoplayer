@@ -69,7 +69,7 @@ def neko(neko_id='neko:v2Yr'):
     p2 = QProcess()
     p1.setStandardOutputProcess(p2)
     p1.start('{}'.format(mega_path), ['{}'.format(mega_url),"--path","-"])
-    p2.start('{}'.format(mpv_path), ["-" , '--no-terminal'])
+    p2.start('{}'.format(mpv_path), ["-" ])
     p2.waitForFinished()
     #print p2.readAll()
 #           "--path","-",)
