@@ -1,7 +1,8 @@
 set -e
 MPVARCH='i686'
 MEGAARCH='win32'
-DATE='20160118'
+#https://mpv.srsfckn.biz/mpv-i686-20160229.7z
+DATE='20160229'
 VER1='1.9.97'
 VER='1.9.97'
 rm -rf dist
