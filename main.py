@@ -53,7 +53,7 @@ def main(neko_id):
         mpv_path = os.path.join(BASE_DIR, "mpv","mpv.com")
     cmd = ['"{}"'.format(mega_path), '"{}"'.format(mega_url),
            "--path","-","|",
-           '"{}"'.format(mpv_path), "-" , '--fullscreen','--cache=1024',
+           '"{}"'.format(mpv_path), "-" , '--fullscreen','--cache-secs=30',
            '--no-terminal'
            ]
     print "Cargando...."
