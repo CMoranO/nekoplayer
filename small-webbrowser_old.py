@@ -15,11 +15,8 @@ import webbrowser
 VER=1
 
 BASE_DIR = os.path.dirname(sys.argv[0])
-
-if os.environ.get("DEBUG"):
-    BASE_URL ="http://localhost:8001/ctrl/s/play/{}"
-else:
-    BASE_URL ="http://nekoanimedd.com/ctrl/s/play/{}"
+DEBUG= os.environ.get("DEBUG")
+BASE_URL ="http://nekoanimedd.com/ctrl/s/play/{}"
 
 cat ="""
      \    /\\
@@ -41,14 +38,18 @@ html = """
 
 pid=None
 
+_response = {u'url': u'https://mega.nz/#!wRVAgaQK!OytVnyChxXgX_Ce4TADq1LOCE489wf5ndehmJJEvTvQ', u'version': 1}
+
 def neko(neko_id='neko:v2Yr'):
     _, id = neko_id.split(":")
 
     url = BASE_URL.format(id)
-    res = requests.get(url)
-
-    mega_url = res.json().get("url","")
-    version = res.json().get("version", -1)
+    if not DEBUG:
+        res = requests.get(url).json()
+    else:
+        res = _response
+    mega_url = res.get("url","")
+    version = res.get("version", -1)
     if VER != version:
         print cat
         print "Hay una version nueva!!! descargala"
@@ -58,11 +59,9 @@ def neko(neko_id='neko:v2Yr'):
     if _platform == "linux" or _platform == "linux2":
         mega_path = "megadl"
         mpv_path = "mpv"
-    elif _platform == "darwin":
-              # MAC OS X
+    elif _platform == "darwin": # MAC OS X
         pass
-    elif _platform == "win32":
-                 # Windows
+    elif _platform == "win32": # Windows
         mega_path = os.path.join(BASE_DIR, 'mega', 'megadl.exe')
         mpv_path = os.path.join(BASE_DIR, "mpv","mpv.com")
     p1 = QProcess()
