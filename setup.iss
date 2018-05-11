@@ -6,6 +6,7 @@
 #define MyAppPublisher "My Company, Inc."
 #define MyAppURL "http://www.example.com/"
 #define MyAppExeName "main.exe"
+#define MyPath "C:\Users\crx\Desktop\nekoplayer"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -23,7 +24,7 @@ DefaultDirName={pf}\{#MyAppName}
 DisableDirPage=yes
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
-OutputDir=C:\Users\IEUser\nekoplayer
+OutputDir={#MyPath}
 OutputBaseFilename=install_nekoanime
 Compression=lzma
 SolidCompression=yes
@@ -40,15 +41,15 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 
 [Files]
 ; Add the ISSkin DLL used for skinning Inno Setup installations.
-Source: "C:\Program Files\Codejock Software\ISSkin\ISSkinU.dll"; DestDir: {tmp}; Flags: dontcopy
+;Source: "C:\Program Files\Codejock Software\ISSkin\ISSkinU.dll"; DestDir: {tmp}; Flags: dontcopy
 
 ; Add the Visual Style resource containing the resources used for skinning,
 ; you can also use Microsoft Visual Styles (*.msstyles) resources.
-Source: "C:\Program Files\Inno Script Studio\Styles\Sakura.cjstyles"; DestDir: {tmp}; Flags: dontcopy
+;Source: "C:\Program Files\Inno Script Studio\Styles\Sakura.cjstyles"; DestDir: {tmp}; Flags: dontcopy
 
-Source: "C:\Users\IEUser\nekoplayer\dist\main.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\IEUser\nekoplayer\dist\mega\*"; DestDir: "{app}\mega"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\IEUser\nekoplayer\dist\mpv\*"; DestDir: "{app}\mpv"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#MyPath}\dist\main.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\dist\mega\*"; DestDir: "{app}\mega"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#MyPath}\dist\mpv\*"; DestDir: "{app}\mpv"; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Source: "C:\cygwin64\home\andres\nekoplayer\dist\w9xpopen.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
@@ -61,23 +62,23 @@ Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 
 [Code]
 // Importing LoadSkin API from ISSkinU.dll
-procedure LoadSkin(lpszPath: String; lpszIniFileName: String);
-external 'LoadSkin@files:ISSkinU.dll stdcall';
+//procedure LoadSkin(lpszPath: String; lpszIniFileName: String);
+//external 'LoadSkin@files:ISSkinU.dll stdcall';
 
 // Importing UnloadSkin API from ISSkinU.dll
-procedure UnloadSkin();
-external 'UnloadSkin@files:ISSkinU.dll stdcall';
+//procedure UnloadSkin();
+//external 'UnloadSkin@files:ISSkinU.dll stdcall';
 
 // Importing ShowWindow Windows API from User32.DLL
-function ShowWindow(hWnd: Integer; uType: Integer): Integer;
-external 'ShowWindow@user32.dll stdcall';
+//function ShowWindow(hWnd: Integer; uType: Integer): Integer;
+//external 'ShowWindow@user32.dll stdcall';
 
-function InitializeSetup(): Boolean;
-begin
-  ExtractTemporaryFile('Sakura.cjstyles');
-  LoadSkin(ExpandConstant('{tmp}\Sakura.cjstyles'), 'normalpink.ini');
-  Result := True;
-end;
+//function InitializeSetup(): Boolean;
+//begin
+//  ExtractTemporaryFile('Sakura.cjstyles');
+ // LoadSkin(ExpandConstant('{tmp}\Sakura.cjstyles'), 'normalpink.ini');
+  //Result := True;
+//end;
 //REPLACE THE DOWNLOAD URL WITH YOUR CO-BUNDLE URL
 
 //procedure InitializeWizard();
@@ -111,10 +112,10 @@ end;
 
 
 
-procedure DeinitializeSetup();
-begin
+//procedure DeinitializeSetup();
+//begin
   // Hide Window before unloading skin so user does not get
   // a glimpse of an unskinned window before it is closed.
-  ShowWindow(StrToInt(ExpandConstant('{wizardhwnd}')), 0);
-  UnloadSkin();
-end;
+ // ShowWindow(StrToInt(ExpandConstant('{wizardhwnd}')), 0);
+  //UnloadSkin();
+//end;

@@ -1,22 +1,21 @@
 SET MPVARCH=i686
 SET MEGAARCH=win32
-SET DATE=20160118
-SET VER1=1.9.97
-SET VER=1.9.97
-rm -rf dist
+SET DATE=20171225
+SET VER=1.9.98
+del /Q dist
 
 pyinstaller -i cat.ico -F  main.py
 
-wget -c  https://mpv.srsfckn.biz/mpv-%MPVARCH%-%DATE%.7z -O mpv.7z
+python download.py https://mpv.srsfckn.biz/mpv-%MPVARCH%-%DATE%.7z mpv.7z
 7z x mpv.7z  -odist/mpv/ -y
-rm dist/mpv/*.pdf
+del dist\mpv\*.pdf /Q /F /S
 
-wget -c https://megatools.megous.com/builds/megatools-%VER1%-%MEGAARCH%.zip -O mega.zip
+python download.py https://megatools.megous.com/builds/megatools-%VER%-%MEGAARCH%.zip  mega.zip
 7z x mega.zip -odist/mega/ -y
-mv -f dist/mega/megatools-%VER%-%MEGAARCH%/* dist/mega/
-rm dist/mega/megatools-%VER%-%MEGAARCH%/ -rf
+move  dist\mega\megatools-%VER%-%MEGAARCH%\* dist\mega\
+del /Q /F /S dist\mega\megatools-%VER%-%MEGAARCH%\
 
-chmod +x -R dist
 
-cp dist/mega mega -rf
-cp dist/mpv mpv -rf
+copy  dist\mega mega 
+copy  dist\mpv mpv 
+compil32 /cc setup.iss

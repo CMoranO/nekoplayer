@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(sys.argv[0])
 if os.environ.get("DEBUG"):
     BASE_URL ="http://localhost:8001/ctrl/s/play/{}"
 else:
-    BASE_URL ="http://nekoanimedd.com/ctrl/s/play/{}"
+    BASE_URL ="http://nekoplayer.nekoanimedd.com/ctrl/s/play/{}"
 
 cat ="""
      \    /\\
@@ -34,12 +34,12 @@ def main(neko_id):
     version = res.json().get("version", -1)
 
     if VER != version:
-        print cat
-        print "Hay una version nueva!!! descargala"
+        print(cat)
+        print("Hay una version nueva!!! descargala")
         raw_input("adios ...")
         return
 
-    print cat
+    print (cat)
 
     if _platform == "linux" or _platform == "linux2":
         mega_path = "megadl"
@@ -56,7 +56,7 @@ def main(neko_id):
            '"{}"'.format(mpv_path), "-" , '--fullscreen','--cache-secs=30',
            '--no-terminal'
            ]
-    print "Cargando...."
+    print("Cargando....")
     #webbrowser.open("http://bc.vc/QODvAp")
     subprocess.check_output(" ".join(cmd), shell=True)
 
