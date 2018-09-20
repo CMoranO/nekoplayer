@@ -35,8 +35,8 @@ def main(neko_id):
 
     if VER != version:
         print(cat)
-        print("Hay una version nueva!!! descargala")
-        raw_input("adios ...")
+        print("Nueva Version Disponible!!! Descargala en nekoanimedd.com")
+        raw_input("Adios...")
         return
 
     print (cat)
@@ -53,7 +53,7 @@ def main(neko_id):
         mpv_path = os.path.join(BASE_DIR, "mpv","mpv.com")
     cmd = ['"{}"'.format(mega_path), '"{}"'.format(mega_url),
            "--path","-","|",
-           '"{}"'.format(mpv_path), "-" , '--fullscreen','--cache-secs=30',
+           '"{}"'.format(mpv_path), "-" , '--fullscreen','--cache 30000','--force-seekable yes',
            '--no-terminal'
            ]
     print("Cargando....")
